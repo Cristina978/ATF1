@@ -1,7 +1,6 @@
 package demoqa.project.configurations.driver;
 
 import demoqa.project.configurations.properties.PropertiesManager;
-import demoqa.project.configurations.driver.BrowserProperty;
 import org.apache.logging.log4j.LogManager;
 import org.openqa.selenium.WebDriver;
 
@@ -19,7 +18,7 @@ public class DriverManager {
         return driver;
     }
 
-    public static void openAndMaximizeBrowser() {
+    public static void MaximizeBrowser() {
         getDriver().manage().window().maximize();
         LogManager.getLogger().info("Browser is launched and maximized");
     }

@@ -8,7 +8,7 @@ Feature: Login functionality
     Given User is on Login page
     When User enter the following credentials
     | UserName | test |
-    | Password | Continental@1 |
+    | Password | Useuser@1 |
     Then "Profile" page is displayed
 
     @Negative
@@ -21,6 +21,6 @@ Feature: Login functionality
       Examples:
       | username | password      |
       | test     | Cont          |
-      | te       | Continental@1 |
-      |          | Continental@1 |
+      | te       | Useuser@1 |
+      |          | Useuser@1 |
       | test     |               |
