@@ -29,6 +29,4 @@ public class LoginStep {
         String actualMessage = loginPage.getErrorLabel().getText();
         assertThat("The error message is incorrect", actualMessage, is(expectedMessage));
     }
-
-
 }

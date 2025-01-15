@@ -39,4 +39,5 @@ public class LoginPage extends CommonPage {
         WaitUtils.waitForElementToBeDisplayed(errorLabel, PropertiesManager.displayElementTimeout());
         return errorLabel;
     }
+
 }

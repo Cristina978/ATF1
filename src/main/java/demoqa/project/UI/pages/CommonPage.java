@@ -1,15 +1,10 @@
 package demoqa.project.UI.pages;
 
 import demoqa.project.UI.commonActions.BrowserAction;
-import demoqa.project.configurations.driver.DriverManager;
 import demoqa.project.configurations.properties.PropertiesManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.apache.logging.log4j.LogManager;
-import org.openqa.selenium.support.PageFactory;
 import org.awaitility.Awaitility;
 
 import static demoqa.project.configurations.driver.DriverManager.getDriver;
