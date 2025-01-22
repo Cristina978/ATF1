@@ -12,17 +12,10 @@
         <maven.compiler.source>22</maven.compiler.source>
         <maven.compiler.target>22</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <junit.version>4.13.2</junit.version>
+        <junit.version>4.13.1</junit.version>
         <cucumber.version>7.16.0</cucumber.version>
         <log4j.version>2.23.1</log4j.version>
-        <commons-lang3.version>3.17.0</commons-lang3.version>
-        <commons-io.version>2.18.0</commons-io.version>
-        <commons-codec.version>1.17.2</commons-codec.version>
         <selenium.version>4.21.0</selenium.version>
-        <io.rest-assured.version>5.5.0</io.rest-assured.version>
-        <jackson-core.version>2.18.2</jackson-core.version>
-        <hamcrest.version>3.0</hamcrest.version>
-        <datafaker.version>2.4.2</datafaker.version>
         <awaitility.version>4.2.1</awaitility.version>
     </properties>
 
@@ -64,12 +57,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>${commons-lang3.version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-chrome-driver</artifactId>
             <version>${selenium.version}</version>
@@ -100,40 +87,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-api</artifactId>
-            <version>${selenium.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-devtools-v125</artifactId>
-            <version>${selenium.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
-            <version>${io.rest-assured.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>json-schema-validator</artifactId>
-            <version>${io.rest-assured.version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.awaitility</groupId>
             <artifactId>awaitility</artifactId>
             <version>${awaitility.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>RELEASE</version>
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
-
 </project>
