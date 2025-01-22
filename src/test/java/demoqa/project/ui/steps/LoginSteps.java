@@ -19,13 +19,13 @@ public class LoginSteps {
     }
 
     @When("user logs in with the following credentials:")
-    public void loginWithCredentials(Map<String, String> credentials) {
+    public void loginWithCredentials(Map<String, String> credentials) throws InterruptedException {
         loginPage.loginWithCredentials(credentials);
     }
 
     @Then("{string} message is displayed")
-    public void validateErrorMessage(String expectedMessage) throws InterruptedException {
-        String actualMessage = loginPage.getErrorLabel().getAccessibleName();
+    public void validateErrorMessage(String expectedMessage) {
+        String actualMessage = loginPage.getErrorLabel();
         assertThat("The error message is incorrect", actualMessage, is(expectedMessage));
     }
 

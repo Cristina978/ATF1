@@ -4,11 +4,7 @@ package demoqa.project.hooks;
 import demoqa.project.configurations.driver.DriverManager;
 import demoqa.project.configurations.logger.LoggerHelper;
 //import demoqa.project.configurations.scenario.context.ScenarioContext;
-import io.cucumber.java.After;
-import io.cucumber.java.AfterAll;
-import io.cucumber.java.Before;
-import io.cucumber.java.BeforeAll;
-import io.cucumber.java.Scenario;
+import io.cucumber.java.*;
 import org.apache.logging.log4j.LogManager;
 
 
@@ -31,7 +27,6 @@ public class ExecutionHooks {
     public void clearCache() {
         DriverManager.clearBrowserCache();
     }
-
 
 
     @AfterAll

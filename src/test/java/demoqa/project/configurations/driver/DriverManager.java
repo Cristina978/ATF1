@@ -8,14 +8,12 @@ import org.openqa.selenium.WebDriver;
 public class DriverManager {
 
     private static WebDriver driver;
-
     public DriverManager() {
     }
 
     public static WebDriver getDriver() {
         if (driver == null) {
-            driver = BrowserProperty.getBrowserProperty();
-        }
+            driver = BrowserProperty.getBrowserProperty();}
         return driver;
     }
 

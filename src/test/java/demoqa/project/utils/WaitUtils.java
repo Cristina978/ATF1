@@ -17,7 +17,7 @@ public class WaitUtils {
     public static void waitForElementToBeDisplayed(WebElement element, Duration timeoutInSeconds){
         WebDriverWait wait = defineWebDriverWait(timeoutInSeconds);
         wait.until(ExpectedConditions.visibilityOf(element));
-        LogManager.getLogger().info("{} field is displayed.", element.getAccessibleName());
+        LogManager.getLogger().info("{} field is displayed.", element.getText());
     }
 
 

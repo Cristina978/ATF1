@@ -1,24 +1,23 @@
 package demoqa.project.ui.pages;
 
 import demoqa.project.ui.commonActions.BrowserAction;
-
 import demoqa.project.configurations.properties.PropertiesManager;
-import org.openqa.selenium.By;
-
 import org.openqa.selenium.WebElement;
-
 import org.apache.logging.log4j.LogManager;
 import org.awaitility.Awaitility;
-
+import org.openqa.selenium.support.FindBy;
 import static demoqa.project.configurations.driver.DriverManager.getDriver;
 import static org.junit.Assert.assertEquals;
+
 
 public abstract class CommonPage {
     BrowserAction browserAction = new BrowserAction();
 
-    WebElement userNameField = getDriver().findElement(By.xpath("//input[@id='userName']"));
+    @FindBy(id = "userName")
+    private WebElement userNameField;
 
-     WebElement passwordField = getDriver().findElement(By.xpath("//input[@id='password']"));
+    @FindBy(id = "password")
+    private WebElement passwordField;
 
 
     public WebElement getUserNameField(){

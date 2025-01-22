@@ -15,6 +15,7 @@ public class BrowserProperty {
             .toLowerCase()
             .trim();
 
+
     public static WebDriver getBrowserProperty() {
         switch (BROWSER) {
             case "chrome" -> driver = new ChromeDriver();

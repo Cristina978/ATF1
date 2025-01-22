@@ -43,7 +43,7 @@ public class PropertiesManager {
             return Duration.ofSeconds(Integer.parseInt(propertyValue));
         } catch (NumberFormatException | NullPointerException e) {
             LogManager.getLogger().warn("Invalid or missing displayedElementTimeout value in properties. Using default value - 5 seconds.");
-            return Duration.ofSeconds(10);
+            return Duration.ofSeconds(5);
         }
     }
 
