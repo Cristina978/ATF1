@@ -8,6 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import demoqa.project.utils.WaitUtils;
 
 
+
 public class BrowserAction {
 
     public static void clickButton(WebElement button) {

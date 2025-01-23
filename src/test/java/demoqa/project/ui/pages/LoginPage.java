@@ -5,7 +5,6 @@ import demoqa.project.ui.commonActions.BrowserAction;
 import demoqa.project.utils.WaitUtils;
 import org.apache.logging.log4j.LogManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
