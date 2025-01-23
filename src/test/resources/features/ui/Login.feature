@@ -24,6 +24,6 @@ Feature: Login
       | username | password      |
       | test     | Cont          |
       | te       | Continental@1 |
-      | xx       | xx            |
-      | yy       | yy            |
+      | xx       | xxghg         |
+      | yyjgj    | yy            |
 

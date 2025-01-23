@@ -29,7 +29,7 @@ public class BrowserAction {
     public static void removeAds() {
         try {
             JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
-            js.executeScript("document.querySelectorAll('iframe').forEach(iframe => iframe.remove());");
+            js.executeScript("document.querySelectorAll('iframe[src*=\"googleads\"], div[class*=\"ad\"]').forEach(el => el.remove());");
             LogManager.getLogger().info("All iframes removed.");
         } catch (Exception e) {
             LogManager.getLogger().warn("Failed to remove ads: " + e.getMessage());

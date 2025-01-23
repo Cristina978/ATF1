@@ -19,7 +19,6 @@ public abstract class CommonPage {
     @FindBy(id = "password")
     private WebElement passwordField;
 
-
     public WebElement getUserNameField(){
         return userNameField;
     }

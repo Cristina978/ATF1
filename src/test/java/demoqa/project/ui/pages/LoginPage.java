@@ -13,8 +13,6 @@ import static demoqa.project.configurations.driver.DriverManager.getDriver;
 
 
 public class LoginPage extends CommonPage {
-    
-      WebElement newUserButton = getDriver().findElement(By.xpath("//button[@id='newUser']"));
 
     @FindBy(id = "login")
     private WebElement loginButton;
@@ -42,7 +40,7 @@ public class LoginPage extends CommonPage {
     }
 
     public void loginWithCredentials(Map<String, String> credentials) throws InterruptedException {
-        Thread.sleep(3000);
+        Thread.sleep(5000);
         browserAction.populateField(getUserNameField(), credentials.get("userName"));
         browserAction.populateField(getPasswordField(), credentials.get("password"));
         clickLoginButton();

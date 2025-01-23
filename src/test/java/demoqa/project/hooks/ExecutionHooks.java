@@ -3,16 +3,16 @@ package demoqa.project.hooks;
 
 import demoqa.project.configurations.driver.DriverManager;
 import demoqa.project.configurations.logger.LoggerHelper;
-//import demoqa.project.configurations.scenario.context.ScenarioContext;
+import demoqa.project.configurations.scenario.ScenarioContext;
 import io.cucumber.java.*;
 import org.apache.logging.log4j.LogManager;
 
 
 public class ExecutionHooks {
 
-    @BeforeAll
+    @Before("@UI")
     public static void launchTests() {
-      //  ScenarioContext.getInstance().clearData();
+        ScenarioContext.getInstance().clearData();
     }
 
     @Before("@UI")
@@ -29,10 +29,10 @@ public class ExecutionHooks {
     }
 
 
-    @AfterAll
+    @After("@UI")
     public static void closeTests() {
         DriverManager.tearDown();
-       // ScenarioContext.getInstance().clearData();
+        ScenarioContext.getInstance().clearData();
         LogManager.getLogger().info("Test is finished. Browser closed");
     }
 }
