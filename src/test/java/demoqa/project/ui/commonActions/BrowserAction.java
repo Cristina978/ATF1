@@ -1,6 +1,8 @@
 package demoqa.project.ui.commonActions;
 
+import demoqa.project.configurations.driver.DriverManager;
 import demoqa.project.configurations.properties.PropertiesManager;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.apache.logging.log4j.LogManager;
 import demoqa.project.utils.WaitUtils;
@@ -10,6 +12,13 @@ import demoqa.project.utils.WaitUtils;
 public class BrowserAction {
 
     public static void clickButton(WebElement button) {
+        try {
+            JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
+            js.executeScript("document.querySelectorAll('iframe').forEach(iframe => iframe.remove());");
+            LogManager.getLogger().info("All iframes removed.");
+        } catch (Exception e) {
+            LogManager.getLogger().warn("Failed to remove ads: " + e.getMessage());
+        }
         WaitUtils.waitForElementToBeClickable(button, PropertiesManager.displayElementTimeout());
         String buttonName = button.getText();
         button.click();
