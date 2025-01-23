@@ -4,6 +4,7 @@ import demoqa.project.configurations.properties.PropertiesManager;
 import demoqa.project.utils.WaitUtils;
 import org.apache.logging.log4j.LogManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -41,8 +42,10 @@ public class LoginPage extends CommonPage {
 
     public void loginWithCredentials(Map<String, String> credentials) throws InterruptedException {
         Thread.sleep(4000);
+        browserAction.removeAds();
         browserAction.populateField(getUserNameField(), credentials.get("userName"));
         browserAction.populateField(getPasswordField(), credentials.get("password"));
         clickLoginButton();
     }
+
 }
