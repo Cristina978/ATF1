@@ -26,5 +26,4 @@ Feature: Login
       | te       | Continental@1 |
       | xx       | xx            |
       | yy       | yy            |
-      | jfns     | sjdn          |
 
