@@ -7,8 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.apache.logging.log4j.LogManager;
 import demoqa.project.utils.WaitUtils;
 
-import static demoqa.project.configurations.driver.DriverManager.getDriver;
-
 
 public class BrowserAction {
 
