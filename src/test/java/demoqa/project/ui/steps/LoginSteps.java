@@ -19,7 +19,7 @@ public class LoginSteps {
     }
 
     @When("user logs in with the following credentials:")
-    public void loginWithCredentials(Map<String, String> credentials) throws InterruptedException {
+    public void loginWithCredentials(Map<String, String> credentials) {
         loginPage.loginWithCredentials(credentials);
     }
 

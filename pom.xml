@@ -17,6 +17,7 @@
         <log4j.version>2.23.1</log4j.version>
         <selenium.version>4.21.0</selenium.version>
         <awaitility.version>4.2.1</awaitility.version>
+        <datafaker.version>2.2.2</datafaker.version>
     </properties>
 
     <dependencies>
@@ -84,6 +85,12 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${selenium.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.datafaker</groupId>
+            <artifactId>datafaker</artifactId>
+            <version>${datafaker.version}</version>
         </dependency>
 
         <dependency>

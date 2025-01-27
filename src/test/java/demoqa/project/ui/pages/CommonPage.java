@@ -1,11 +1,15 @@
 package demoqa.project.ui.pages;
 
+import demoqa.project.configurations.driver.DriverManager;
 import demoqa.project.ui.commonActions.BrowserAction;
 import demoqa.project.configurations.properties.PropertiesManager;
+import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.apache.logging.log4j.LogManager;
 import org.awaitility.Awaitility;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
 import static demoqa.project.configurations.driver.DriverManager.getDriver;
 import static org.junit.Assert.assertEquals;
 
@@ -26,6 +30,10 @@ public abstract class CommonPage {
         return passwordField;
     }
 
+    public CommonPage(){
+        PageFactory.initElements(DriverManager.getDriver(), this);
+    }
+
 
     public String getCurrentPage() {
         String currentUrl = getDriver().getCurrentUrl();
@@ -34,8 +42,8 @@ public abstract class CommonPage {
             return "Login";
         } else if (currentUrl.contains("/profile")) {
             return "Profile";
-        } else if (currentUrl.contains("/register")) {
-            return "Register";
+        } else if (currentUrl.contains("/webtables")) {
+            return "WebTables";
         } else if (currentUrl.contains("/books")) {
             return "Books";
         } else {
@@ -49,4 +57,9 @@ public abstract class CommonPage {
                 .untilAsserted(() -> assertEquals("Page URL does not match", expectedURL, getCurrentPage()));
         LogManager.getLogger().info("The following page URL: \"{}\" is displayed", expectedURL);
     }
+
+    public void navigateToURL(String expectedURL) {
+        getDriver().get(PropertiesManager.getProperty(expectedURL));
+    }
+
 }

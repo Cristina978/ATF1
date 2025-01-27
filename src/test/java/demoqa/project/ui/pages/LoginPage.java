@@ -1,15 +1,12 @@
 package demoqa.project.ui.pages;
 
 import demoqa.project.configurations.properties.PropertiesManager;
-import demoqa.project.ui.commonActions.BrowserAction;
 import demoqa.project.utils.WaitUtils;
 import org.apache.logging.log4j.LogManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import java.util.Map;
-import static demoqa.project.configurations.driver.DriverManager.getDriver;
+
 
 
 public class LoginPage extends CommonPage {
@@ -20,9 +17,6 @@ public class LoginPage extends CommonPage {
     @FindBy(id= "name")
     private WebElement errorLabel;
 
-    public LoginPage() {
-        PageFactory.initElements(getDriver(), this);
-    }
 
     public String getErrorLabel() {
         WaitUtils.waitForElementToBeDisplayed(errorLabel, PropertiesManager.displayElementTimeout());
@@ -35,12 +29,10 @@ public class LoginPage extends CommonPage {
     }
 
     public void clickLoginButton() {
-        BrowserAction.removeAds();
         browserAction.clickButton(loginButton);
     }
 
-    public void loginWithCredentials(Map<String, String> credentials) throws InterruptedException {
-        Thread.sleep(5000);
+    public void loginWithCredentials(Map<String, String> credentials) {
         browserAction.populateField(getUserNameField(), credentials.get("userName"));
         browserAction.populateField(getPasswordField(), credentials.get("password"));
         clickLoginButton();

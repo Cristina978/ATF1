@@ -1,16 +1,26 @@
+import demoqa.project.ui.pages.CommonPage;
 import org.apache.logging.log4j.LogManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.FindBy;
 
 import static demoqa.project.configurations.driver.DriverManager.*;
 
 
-public class Main {
+public class Main extends CommonPage {
 
+    @FindBy(xpath = "//div[@class='menu-list']//a[text()='Elements']")
+    public static WebElement elements;
+
+    //*[@id="app"]/div/div/div/div[1]/div/div/div[1]/span/div/div[1]
+    static Main object = new Main();
     public static void main(String[] args) {
+
+
 
         // 1. Configurarea Driver Manager
         //WebDriverManager.chromedriver().setup(); // Automatizează descărcarea și configurarea ChromeDriver
@@ -24,29 +34,16 @@ public class Main {
         getDriver();
         try {
             // 4. Accesarea site-ului demoqa
-            //driver.get("https://demoqa.com/login");
+            //getDriver().get("https://demoqa.com/register");
             openBasePage();
 
             // 5. Maximizarea ferestrei browserului (opțional)
             //driver.manage().window().maximize();
             MaximizeBrowser();
-
-            // 6. Localizarea câmpului "Username" și introducerea textului
-            WebElement usernameField = getDriver().findElement(By.xpath("//input[@id='userName']"));
-            usernameField.sendKeys("TestUser");
-
-            // 7. Localizarea câmpului "Password" și introducerea textului
-            WebElement passwordField = getDriver().findElement(By.xpath("//input[@id='password']"));
-            passwordField.sendKeys("TestPassword");
-
-            // 8. Localizarea butonului "Login" și clic pe el
-            WebElement loginButton = getDriver().findElement(By.xpath("//button[@id='login']"));
-            loginButton.click();
-
-            // 9. Afișarea unui mesaj pentru confirmarea rulării
-            LogManager.getLogger().info("Login page is displayed");
-            //System.out.println("Testul s-a rulat cu succes!");
-
+            Thread.sleep(5000);
+            //JavascriptExecutor js = (JavascriptExecutor) getDriver();
+            //js.executeScript("arguments[0].setAttribute('class', 'element-list collapse show');", elements);
+            object.navigateToURL("WEBTABLES_URL");
         } catch (Exception e) {
             e.printStackTrace(); // Afișează detalii despre eroare dacă apare una
         } finally {

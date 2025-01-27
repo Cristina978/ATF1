@@ -12,7 +12,6 @@ import demoqa.project.utils.WaitUtils;
 public class BrowserAction {
 
     public static void clickButton(WebElement button) {
-        BrowserAction.removeAds();
         WaitUtils.waitForElementToBeClickable(button, PropertiesManager.displayElementTimeout());
         String buttonName = button.getText();
         button.click();
@@ -26,11 +25,20 @@ public class BrowserAction {
         inputField.sendKeys(value == null ? "" : value);
         LogManager.getLogger().info("{} field is populated with the value: {}", inputField.getAccessibleName(), value);
     }
+
+    public static void populateField(WebElement inputField, Integer value) {
+        WaitUtils.waitForElementToBeDisplayed(inputField, PropertiesManager.displayElementTimeout());
+        inputField.clear();
+        LogManager.getLogger().info("{} field is cleared", inputField.getAccessibleName());
+        inputField.sendKeys(value == null ? "" : String.valueOf(value));
+        LogManager.getLogger().info("{} field is populated with the value: {}", inputField.getAccessibleName(), value);
+    }
+
     public static void removeAds() {
         try {
             JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
-            js.executeScript("document.querySelectorAll('iframe[src*=\"googleads\"], div[class*=\"ad\"]').forEach(el => el.remove());");
-            LogManager.getLogger().info("All iframes removed.");
+            js.executeScript("document.querySelectorAll('iframe[aria-label=\"Advertisement\"], section[id*=\"Advertisement\"]').forEach(el => el.remove());\n");
+            LogManager.getLogger().info("All Advertisements are removed.");
         } catch (Exception e) {
             LogManager.getLogger().warn("Failed to remove ads: " + e.getMessage());
         }

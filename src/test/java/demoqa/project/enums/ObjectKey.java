@@ -1,6 +1,6 @@
 package demoqa.project.enums;
 
-public enum ScenarioObjectKey {
+public enum ObjectKey {
     USER_CREDENTIALS,
     TOKEN,
     RESPONSE

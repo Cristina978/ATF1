@@ -1,13 +1,13 @@
 package demoqa.project.configurations.scenario;
 
-import demoqa.project.enums.ScenarioObjectKey;
+import demoqa.project.enums.ObjectKey;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class ScenarioContext {
     private static ScenarioContext instance;
-    private Map<ScenarioObjectKey, Object> data;
+    private Map<ObjectKey, Object> data;
 
     private ScenarioContext() {
         data = new HashMap<>();
@@ -20,11 +20,10 @@ public class ScenarioContext {
         return instance;
     }
 
-    public void saveData(ScenarioObjectKey key, Object value) {
-        data.put(key, value);
+    public void saveData(ObjectKey key, Object value) { data.put(key, value);
     }
 
-    public <T> T getData(ScenarioObjectKey key) {
+    public <T> T getData(ObjectKey key) {
         return (T) data.get(key);
     }
 

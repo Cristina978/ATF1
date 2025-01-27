@@ -2,13 +2,10 @@ package demoqa.project.ui.steps;
 
 import demoqa.project.ui.pages.LoginPage;
 import demoqa.project.ui.pages.RegisterPage;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.logging.log4j.LogManager;
-
-import java.util.Map;
 
 public class RegisterStep {
     RegisterPage registerPage = new RegisterPage();
@@ -20,21 +17,13 @@ public class RegisterStep {
         LogManager.getLogger().info("Registration page is displayed");
     }
 
-    @When("user register with valid data")
-    public void registerWithValidData () throws InterruptedException {
+    @When("user cancel the registration form")
+    public void registerWithValidData () {
         registerPage.loginWithCredentials();
     }
 
-    @And("user check the reCAPTCHA checkbox")
-    public void checkCaptchaCheckbox() {
-        RegisterPage.checkCaptchaCheckbox();
-
+    @Then("user is on {string} page")
+    public void goBackToLoginPage(String urlName) {
+        loginPage.validatePageURL(urlName);
     }
-
-    @Then("user is successful registered")
-    public void userIsSuccessfulRegistered() {
-        registerPage.clickRegisterButton();
-        LogManager.getLogger().info("Register button is clicked");
-    }
-
 }
