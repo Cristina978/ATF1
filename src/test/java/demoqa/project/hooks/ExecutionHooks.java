@@ -1,6 +1,7 @@
 package demoqa.project.hooks;
 
 
+import demoqa.project.api.actions.DeleteUserActions;
 import demoqa.project.configurations.driver.DriverManager;
 import demoqa.project.configurations.logger.LoggerHelper;
 import demoqa.project.configurations.scenario.ScenarioContext;
@@ -14,6 +15,12 @@ public class ExecutionHooks {
     @BeforeAll
     public static void launchTests() {
         ScenarioContext.getInstance().clearData();
+    }
+
+    @Before("@API")
+    public void setUpAPI(Scenario scenario) {
+        LoggerHelper.setLogFileName(scenario);
+        LogManager.getLogger().info("Starting API test: {}", scenario.getName());
     }
 
     @Before("@UI")
@@ -31,6 +38,18 @@ public class ExecutionHooks {
         waitForElementToBeDisplayed(sectionAd, PropertiesManager.displayElementTimeout()); */
         Thread.sleep(3000);
         BrowserAction.removeAds();
+    }
+
+    @After(value = "@DeleteUser", order = 2)
+    public void deleteUser(){
+        DeleteUserActions deleteUserActions = new DeleteUserActions();
+        deleteUserActions.deleteAccount();
+    }
+
+
+    @After(value = "@API", order = 1)
+    public void clearDataAPI() {
+        ScenarioContext.getInstance().clearData();
     }
 
     @After("@UI")

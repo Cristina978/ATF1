@@ -1,16 +1,13 @@
 package demoqa.project.ui.pages;
 
-import demoqa.project.configurations.properties.PropertiesManager;
 import demoqa.project.ui.commonActions.BrowserAction;
-import demoqa.project.utils.WaitUtils;
 import org.apache.logging.log4j.LogManager;
-import org.awaitility.Awaitility;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import demoqa.project.utils.FakeDataGenerator;
 import org.openqa.selenium.NoSuchElementException;
-import static org.junit.Assert.assertEquals;
+
 
 public class AddUserPage extends CommonPage{
 
@@ -49,7 +46,7 @@ public class AddUserPage extends CommonPage{
         browserAction.populateField(age, FakeDataGenerator.generateRandomAge());
         browserAction.populateField(salary, FakeDataGenerator.generateRandomSalary());
         browserAction.populateField(department, FakeDataGenerator.generateRandomDepartment());
-        Thread.sleep(5000);
+        Thread.sleep(3000);
     }
 
 
@@ -67,7 +64,7 @@ public class AddUserPage extends CommonPage{
         BrowserAction.clickButton(submitButton);
         Thread.sleep(2000);
         checkNewUserIsAdded(submitButton);
-        Thread.sleep(10000);
+        //Thread.sleep(10000);
     }
 
 }

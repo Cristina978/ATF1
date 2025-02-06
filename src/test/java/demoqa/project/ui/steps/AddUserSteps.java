@@ -1,12 +1,10 @@
 package demoqa.project.ui.steps;
 
 import demoqa.project.ui.pages.AddUserPage;
-import demoqa.project.ui.pages.CommonPage;
-import demoqa.project.ui.pages.LoginPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.apache.logging.log4j.LogManager;
+
 
 public class AddUserSteps {
     AddUserPage addUserPage = new AddUserPage();
@@ -27,5 +25,4 @@ public class AddUserSteps {
     public void newUserIsSuccessfulAdded() throws InterruptedException {
         addUserPage.addNewUserInWebTable();
     }
-
 }

@@ -7,7 +7,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.logging.log4j.LogManager;
 
-public class RegisterStep {
+public class RegisterSteps {
     RegisterPage registerPage = new RegisterPage();
     LoginPage loginPage = new LoginPage();
 

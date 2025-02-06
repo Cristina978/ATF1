@@ -3,7 +3,6 @@ package demoqa.project.ui.pages;
 import demoqa.project.configurations.driver.DriverManager;
 import demoqa.project.ui.commonActions.BrowserAction;
 import demoqa.project.configurations.properties.PropertiesManager;
-import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.apache.logging.log4j.LogManager;
 import org.awaitility.Awaitility;
