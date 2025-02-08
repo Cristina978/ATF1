@@ -10,7 +10,7 @@ import static demoqa.project.enums.ObjectKey.RESPONSE;
 import static demoqa.project.enums.ObjectKey.TOKEN;
 import static io.restassured.RestAssured.given;
 
-public class GenerateToken {
+public class GenerateTokenActions {
     public static void generateToken(Object userData) {
         Response response = given()
                 .contentType("application/json")

@@ -11,7 +11,7 @@ Feature: Login
   Scenario: Check login with valid data
     When user logs in with the following credentials:
       | userName | test          |
-      | password | Continental@1 |
+      | password | UserUser@1 |
     Then "Login" page is displayed
 
   @Negative
@@ -22,8 +22,8 @@ Feature: Login
     Then "Invalid username or password!" message is displayed
     Examples:
       | username | password      |
-      | test     | Cont          |
-      | te       | Continental@1 |
+      | test     | User          |
+      | te       | UserUser@1 |
       | xx       | xxghg         |
       | yyjgj    | yy            |
 

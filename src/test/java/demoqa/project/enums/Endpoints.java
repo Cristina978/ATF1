@@ -3,9 +3,8 @@ package demoqa.project.enums;
 import org.apache.logging.log4j.LogManager;
 
 public enum Endpoints {
-    CREATE_USER("Account/v1/User"),
-    GENERATE_TOKEN("Account/v1/GenerateToken"),
-    DELETE_USER("Account/v1/User/");
+    GET_USER("Account/v1/User"),
+    GENERATE_TOKEN("Account/v1/GenerateToken");
 
     private final String ENDPOINT;
 
