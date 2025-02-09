@@ -16,19 +16,19 @@ public class RegisterSteps {
     CreateUserActions createUserActions = new CreateUserActions();
     GetUserActions getUserActions = new GetUserActions();
 
-    @Given("User provides the following credentials:")
+    @Given("the user provides the following credentials:")
     public void prepareCredentials(Map<String, String> userDataValue) {
         RequestUser userCreationRequest = new RequestUser(userDataValue);
         ScenarioContext.getInstance().saveData(ObjectKey.USER_CREDENTIALS, userCreationRequest);
         LogManager.getLogger().info("The Request body for user registration is following: {}", userCreationRequest);
     }
 
-    @When("user registers an account")
+    @When("the user attempts to registers an account")
     public void registerUser() {
         createUserActions.createUser(ScenarioContext.getInstance().getData(ObjectKey.USER_CREDENTIALS));
     }
 
-    @And("the new user is created")
+    @And("the new user is successfully created")
     public void getUser() {
         getUserActions.getUser();
     }

@@ -4,5 +4,6 @@ public enum ObjectKey {
     USER_CREDENTIALS,
     TOKEN,
     RESPONSE,
-    USER_ID
+    USER_ID,
+    BOOKS_ISBN
 }

@@ -2,23 +2,23 @@
 Feature: User Registration via API
 
   @DeleteUser
-  Scenario: Validate registration user
-    Given User provides the following credentials:
+  Scenario: Validate user registration with valid data
+    Given the user provides the following credentials:
       | userName  | test         |
       | password  | UserUser@16   |
-    When user registers an account
-    Then response has status code 201
-    And authorization token is generated
-    And the new user is created
+    When the user attempts to registers an account
+    Then the response has status code 201
+    And an authorization token is generated
+    And the new user is successfully created
 
   @Negative
-  Scenario Outline: Validate registration with invalid data
-    Given User provides the following credentials:
+  Scenario Outline: Validate user registration with invalid data
+    Given the user provides the following credentials:
       | userName | <userName> |
       | password  | <password>  |
-    When user registers an account
-    Then response status code has <expectedStatusCode>
-    And <errorMessage> error message is displayed
+    When the user attempts to registers an account
+    Then the response status code has <expectedStatusCode>
+    And error message <errorMessage> is displayed
     Examples:
       | userName  |  password   | errorMessage          | expectedStatusCode |
       |           |  12345678   | REQUIRED_FIELDS       | 400                |

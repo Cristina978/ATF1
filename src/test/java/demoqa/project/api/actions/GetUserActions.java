@@ -1,7 +1,5 @@
 package demoqa.project.api.actions;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import demoqa.project.configurations.properties.PropertiesManager;
 import demoqa.project.configurations.scenario.ScenarioContext;
 import demoqa.project.enums.ObjectKey;
@@ -13,7 +11,7 @@ import static demoqa.project.enums.ObjectKey.RESPONSE;
 import static io.restassured.RestAssured.given;
 
 
-public class GetUserActions {
+public class GetUserActions extends CommonActions {
     public void getUser() {
         String user_id = ScenarioContext.getInstance().getData(ObjectKey.USER_ID);
         String token = ScenarioContext.getInstance().getData(ObjectKey.TOKEN);
@@ -26,13 +24,4 @@ public class GetUserActions {
         LogManager.getLogger().info("Response Body: \n{}", formatJson(response.getBody().asString()));
     }
 
-    private String formatJson(String json) {
-        try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            JsonNode jsonNode = objectMapper.readTree(json);
-            return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonNode);
-        } catch (Exception e) {
-            return "Invalid JSON: " + json;
-        }
-    }
 }

@@ -10,9 +10,9 @@ import org.junit.runner.RunWith;
                 "pretty",
                 "html:reports/cucumber-report/cucumber-report-html"
         },
-        tags = "@API",
+        tags = "@UI or @API",
         features = {"src/test/resources/features"},
-        glue = {"demoqa.project.ui.steps", "demoqa.project.hooks"}
+        glue = {"demoqa.project.ui.steps", "demoqa.project.hooks", "demoqa.project.api.steps"}
 )
 public class TestRunner {
 }

@@ -4,7 +4,9 @@ import org.apache.logging.log4j.LogManager;
 
 public enum Endpoints {
     GET_USER("Account/v1/User"),
-    GENERATE_TOKEN("Account/v1/GenerateToken");
+    GENERATE_TOKEN("Account/v1/GenerateToken"),
+    GET_BOOKS("BookStore/v1/Books"),
+    GET_BOOK("BookStore/v1/Book");
 
     private final String ENDPOINT;
 

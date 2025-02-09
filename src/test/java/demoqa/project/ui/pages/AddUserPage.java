@@ -39,13 +39,14 @@ public class AddUserPage extends CommonPage{
 
     public void completeAddNewUserForm() throws InterruptedException {
         BrowserAction.clickButton(addRecordButton);
+        Thread.sleep(2000);
         LogManager.getLogger().info("Add New User form is displayed");
-        browserAction.populateField(firstName, FakeDataGenerator.generateRandomFirstName());
-        browserAction.populateField(lastName, FakeDataGenerator.generateRandomLastName());
-        browserAction.populateField(userEmail, FakeDataGenerator.generateRandomEmail());
-        browserAction.populateField(age, FakeDataGenerator.generateRandomAge());
-        browserAction.populateField(salary, FakeDataGenerator.generateRandomSalary());
-        browserAction.populateField(department, FakeDataGenerator.generateRandomDepartment());
+        BrowserAction.populateField(firstName, FakeDataGenerator.generateRandomFirstName());
+        BrowserAction.populateField(lastName, FakeDataGenerator.generateRandomLastName());
+        BrowserAction.populateField(userEmail, FakeDataGenerator.generateRandomEmail());
+        BrowserAction.populateField(age, FakeDataGenerator.generateRandomAge());
+        BrowserAction.populateField(salary, FakeDataGenerator.generateRandomSalary());
+        BrowserAction.populateField(department, FakeDataGenerator.generateRandomDepartment());
         Thread.sleep(3000);
     }
 
