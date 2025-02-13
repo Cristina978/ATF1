@@ -5,7 +5,7 @@ Feature: User Registration via API
   Scenario: Validate user registration with valid data
     Given the user provides the following credentials:
       | userName  | test         |
-      | password  | UserUser@16   |
+      | password  | UserUser@16  |
     When the user attempts to registers an account
     Then the response has status code 201
     And an authorization token is generated

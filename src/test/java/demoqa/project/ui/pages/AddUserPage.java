@@ -65,7 +65,6 @@ public class AddUserPage extends CommonPage{
         BrowserAction.clickButton(submitButton);
         Thread.sleep(2000);
         checkNewUserIsAdded(submitButton);
-        //Thread.sleep(10000);
     }
 
 }

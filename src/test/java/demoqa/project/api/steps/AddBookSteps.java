@@ -25,7 +25,7 @@ public class AddBookSteps {
         booksActions.addBook(1);
     }
 
-    @And("the added book is verified in the user profile")
+    @When("the added book is verified in the user profile")
     public void verifyBookIsVerified() {
         getUserActions.getUser();
     }
@@ -34,5 +34,21 @@ public class AddBookSteps {
     public void removeBookFromProfile() {
         deleteBookActions.deleteBook();
         getUserActions.getUser();
+    }
+
+    @Given("the user adds {int} books to their profile")
+    public void addMultipleBooksToProfile(int numberOfBooks) {
+        booksActions.getAllBooks();
+        booksActions.addMultipleBooksToProfile(numberOfBooks);
+    }
+
+    @Then("all books are removed from the user's profile")
+    public void removeAllBooksFromProfile() {
+        deleteBookActions.deleteAllBooks();
+    }
+
+    @And("the user verifies that no books remain in their profile")
+    public void verifyNoBooksExists() {
+        getUserActions.verifyUserHasNoBooks();
     }
 }

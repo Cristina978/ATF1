@@ -1,6 +1,4 @@
 
-
-
 @UI
 Feature: Login
 
@@ -11,7 +9,7 @@ Feature: Login
   Scenario: Check login with valid data
     When user logs in with the following credentials:
       | userName | test          |
-      | password | UserUser@1 |
+      | password | UserUser@1    |
     Then "Login" page is displayed
 
   @Negative
@@ -23,7 +21,7 @@ Feature: Login
     Examples:
       | username | password      |
       | test     | User          |
-      | te       | UserUser@1 |
+      | te       | UserUser@1    |
       | xx       | xxghg         |
       | yyjgj    | yy            |
 
