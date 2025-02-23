@@ -1,44 +1,27 @@
 package demoqa.project.api.steps;
 
-import demoqa.project.api.actions.GenerateTokenActions;
+import demoqa.project.api.actions.CreateUserActions;
+import demoqa.project.api.dtos.requests.RequestUser;
 import demoqa.project.configurations.scenario.ScenarioContext;
-import demoqa.project.enums.ErrorMessage;
 import demoqa.project.enums.ObjectKey;
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Then;
-import io.restassured.response.Response;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.When;
 import org.apache.logging.log4j.LogManager;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertEquals;
+import java.util.Map;
 
 public class CommonSteps {
-    Response response = ScenarioContext.getInstance().getData(ObjectKey.RESPONSE);
+    CreateUserActions createUserActions = new CreateUserActions();
 
-    @Then("the response has status code {}")
-    public void validateStatusCode(int expectedStatusCode) {
-        assertEquals("The status code is incorrect", expectedStatusCode, response.getStatusCode());
-        LogManager.getLogger().info("The {} status code is received", response.getStatusCode());
+    @Given("the user provides the following credentials:")
+    public void prepareCredentials(Map<String, String> userDataValue) {
+        LogManager.getLogger("Starting process to register new user.");
+        RequestUser userCreationRequest = new RequestUser(userDataValue);
+        ScenarioContext.getInstance().saveData(ObjectKey.USER_CREDENTIALS, userCreationRequest);
+        LogManager.getLogger().info("The Body for user creation is following: {}", userCreationRequest);
     }
 
-    @Then("the response status code has {}")
-    public void verifyStatusCode(String expectedStatusCode) {
-        assertEquals("The status code is incorrect", Integer.parseInt(expectedStatusCode), response.getStatusCode());
-        LogManager.getLogger().info("The response has status code {}", response.getStatusCode());
+    @When("the user attempts to registers an account")
+    public void registerUser() {
+        createUserActions.createUser(ScenarioContext.getInstance().getData(ObjectKey.USER_CREDENTIALS));
     }
-
-
-    @And("an authorization token is generated")
-    public void validateAuthorizationToken() {
-        GenerateTokenActions.generateToken(ScenarioContext.getInstance().getData(ObjectKey.USER_CREDENTIALS));
-    }
-
-    @And("error message {} is displayed")
-    public void validateErrorMessage(ErrorMessage type) {
-        String expectedErrorMessage = type.getErrorMessageName();
-        assertThat("The error message is incorrect", response.jsonPath().getString("message"), is(expectedErrorMessage));
-        LogManager.getLogger().info("The following error message is displayed: {}", expectedErrorMessage);
-    }
-
 }

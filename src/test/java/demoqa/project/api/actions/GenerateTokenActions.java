@@ -12,6 +12,7 @@ import static io.restassured.RestAssured.given;
 
 public class GenerateTokenActions {
     public static void generateToken(Object userData) {
+        LogManager.getLogger("Starting process to get authorization token.");
         Response response = given()
                 .contentType("application/json")
                 .body(userData)
@@ -20,10 +21,10 @@ public class GenerateTokenActions {
         ScenarioContext.getInstance().saveData(RESPONSE, response);
         ScenarioContext.getInstance().saveData(TOKEN, response.jsonPath().getString("token"));
         if (ScenarioContext.getInstance().getData(TOKEN) != null) {
-            LogManager.getLogger().info("User authorized successfully with token: {}", ScenarioContext.getInstance().getData(TOKEN).toString());
+            LogManager.getLogger().info("User authorized successfully with token: {} \n", ScenarioContext.getInstance().getData(TOKEN).toString());
         } else {
             String errorMessage = response.jsonPath().getString("message");
-            LogManager.getLogger().info("No token generated. Failed with the following error: {}", errorMessage);
+            LogManager.getLogger().info("No token generated. Failed with the following error: {} \n", errorMessage);
         }
     }
 }

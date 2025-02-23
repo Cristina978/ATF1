@@ -18,8 +18,8 @@ public class DeleteBookActions extends CommonActions {
         String token = ScenarioContext.getInstance().getData(ObjectKey.TOKEN);
         String userId = ScenarioContext.getInstance().getData(ObjectKey.USER_ID);
         List<String> booksIsbn = ScenarioContext.getInstance().getData(ObjectKey.BOOKS_ISBN);
-
-      given()
+        LogManager.getLogger().info("Sending API request to delete book.");
+        given()
                 .header("Authorization", "Bearer " + token)
                 .contentType("application/json")
                 .body(Map.of(
@@ -28,18 +28,19 @@ public class DeleteBookActions extends CommonActions {
                 ))
                 .delete(PropertiesManager.getProperty("BASE_URL_API") + GET_BOOK.getEndPoint())
                 .then().statusCode(SC_NO_CONTENT);
-        LogManager.getLogger().info("Book was deleted with Isbn: {} ", booksIsbn.getFirst());
+        LogManager.getLogger().info("Book with ISBN: {} was successfully deleted for user ID: {} \n", booksIsbn.getFirst(), userId);
     }
 
     public void deleteAllBooks() {
         String token = ScenarioContext.getInstance().getData(ObjectKey.TOKEN);
         String userId = ScenarioContext.getInstance().getData(ObjectKey.USER_ID);
+        LogManager.getLogger().info("Sending API request to delete all books.");
         given()
                 .header("Authorization", "Bearer " + token)
                 .contentType("application/json")
                 .queryParam("UserId", userId)
                 .delete(PropertiesManager.getProperty("BASE_URL_API") + GET_BOOKS.getEndPoint())
                 .then().statusCode(SC_NO_CONTENT);
-        LogManager.getLogger().info("All books were deleted from user's profile with ID: {} ", userId);
+        LogManager.getLogger().info("All books were successfully deleted for user ID: {} \n", userId);
     }
 }

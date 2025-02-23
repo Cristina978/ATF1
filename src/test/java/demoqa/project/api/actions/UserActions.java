@@ -6,28 +6,16 @@ import demoqa.project.enums.ObjectKey;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.apache.logging.log4j.LogManager;
-
 import java.util.List;
-
 import static demoqa.project.enums.Endpoints.GET_USER;
 import static demoqa.project.enums.ObjectKey.RESPONSE;
 import static io.restassured.RestAssured.given;
 
 
-public class GetUserActions extends CommonActions {
-    public void getUser() {
-        String user_id = ScenarioContext.getInstance().getData(ObjectKey.USER_ID);
-        String token = ScenarioContext.getInstance().getData(ObjectKey.TOKEN);
-        Response response = given()
-                .header("Authorization", "Bearer " + token)
-                .contentType("application/json")
-                .get(PropertiesManager.getProperty("BASE_URL_API") + GET_USER.getEndPoint() + "/" + user_id )
-                .thenReturn();
-        ScenarioContext.getInstance().saveData(RESPONSE, response);
-        LogManager.getLogger().info("Response Body: \n{}", formatJson(response.getBody().asString()));
-    }
+public class UserActions extends CommonActions {
 
     public void verifyUserHasNoBooks() {
+        LogManager.getLogger().info("Starting verification to check that user has no books.");
         String user_id = ScenarioContext.getInstance().getData(ObjectKey.USER_ID);
         String token = ScenarioContext.getInstance().getData(ObjectKey.TOKEN);
         Response response = given()

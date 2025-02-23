@@ -23,7 +23,7 @@ public class CreateUserActions {
         ScenarioContext.getInstance().saveData(USER_ID, userId);
 
         if ( userId != null && response.statusCode() == SC_CREATED) {
-            LogManager.getLogger().info("Registered user with ID: {}", userId);
+            LogManager.getLogger().info("New user registered with ID: {}", userId);
         } else {
             String errorMessage = response.jsonPath().getString("message");
             LogManager.getLogger().info("Failed to register user. Error: {}", errorMessage);
