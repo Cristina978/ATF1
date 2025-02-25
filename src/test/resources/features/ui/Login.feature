@@ -3,25 +3,37 @@
 Feature: Login
 
   Background:
-    Given user is on Login page
+    Given User is on Login page
 
 
-  Scenario: Check login with valid data
-    When user logs in with the following credentials:
+  Scenario: Check User login with valid data
+    When User logs in with the following credentials:
       | userName | test          |
       | password | UserUser@1    |
     Then "Login" page is displayed
 
   @Negative
   Scenario Outline: Check login with invalid data
-    When user logs in with the following credentials:
+    When User logs in with the following credentials:
       | userName | <username> |
       | password | <password> |
     Then "Invalid username or password!" message is displayed
     Examples:
       | username | password      |
-      | test     | User          |
-      | te       | UserUser@1    |
-      | xx       | xxghg         |
-      | yyjgj    | yy            |
+      | test     | u             |
+      | t        | UserUser@1    |
+      | xx       | .;@=          |
+      | 21$%^    | yy            |
+
+
+  Scenario Outline: Check login with empty data
+    When User logs in with the following credentials:
+      | userName | <username> |
+      | password | <password> |
+    Then Fields are highlighted in red color
+    Examples:
+      | username | password      |
+      |          |               |
+      | test     |               |
+      |          | UserUser@1    |
 

@@ -38,6 +38,7 @@ public class ExecutionHooks {
         waitForElementToBeDisplayed(sectionAd, PropertiesManager.displayElementTimeout()); */
         Thread.sleep(3000);
         BrowserAction.removeAds();
+        Thread.sleep(3000);
     }
 
     @After(value = "@DeleteUser", order = 2)

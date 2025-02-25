@@ -1,6 +1,7 @@
 package demoqa.project.ui.steps;
 
 import demoqa.project.ui.pages.LoginPage;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -13,13 +14,14 @@ import static org.hamcrest.Matchers.is;
 public class LoginSteps {
     LoginPage loginPage = new LoginPage();
 
-    @Given("user is on Login page")
+    @Given("User is on Login page")
     public void userIsOnLoginPage() {
-        LogManager.getLogger().info("Login page is displayed");
+        LogManager.getLogger().info("User is on Login page \n");
     }
 
-    @When("user logs in with the following credentials:")
-    public void loginWithCredentials(Map<String, String> credentials) {
+    @When("User logs in with the following credentials:")
+    public void loginWithCredentials(DataTable dataTable) {
+        Map<String, String> credentials = dataTable.asMap(String.class, String.class);
         loginPage.loginWithCredentials(credentials);
     }
 
@@ -27,6 +29,7 @@ public class LoginSteps {
     public void validateErrorMessage(String expectedMessage) {
         String actualMessage = loginPage.getErrorLabel();
         assertThat("The error message is incorrect", actualMessage, is(expectedMessage));
+        LogManager.getLogger().info("The error message is: {}", actualMessage);
     }
 
     @Then("{string} page is displayed")
@@ -34,4 +37,8 @@ public class LoginSteps {
         loginPage.validatePageURL(urlName);
     }
 
+    @Then("Fields are highlighted in red color")
+    public void checkFieldIsHighlighted() {
+        loginPage.verifyFieldValidation();
+    }
 }

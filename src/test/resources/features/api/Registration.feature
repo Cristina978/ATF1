@@ -7,7 +7,7 @@ Feature: User Registration via API
       | userName  | test         |
       | password  | UserUser@3   |
     When the user attempts to registers an account
-    Then the response has status code 201
+    Then the response has status code SC_CREATED
     And an authorization token is generated
     And the new user is successfully created
 

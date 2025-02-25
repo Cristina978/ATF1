@@ -23,11 +23,11 @@ public class RequestUser {
         return password;
     }
 
-    @Override
-    public String toString() {
-        return "\n{\n" +
-                "  \"userName\": \"" + userName + "\",\n" +
-                "  \"password\": \"" + password + "\"\n" +
-                "}";
-    }
+//    @Override
+//    public String toString() {
+//        return "\n{\n" +
+//                "  \"userName\": \"" + userName + "\",\n" +
+//                "  \"password\": \"" + password + "\"\n" +
+//                "}";
+//    }
 }

@@ -28,7 +28,7 @@ public class DriverManager {
 
     public static void clearBrowserCache() {
         getDriver().manage().deleteAllCookies();
-        LogManager.getLogger().info("Cash was cleared");
+        LogManager.getLogger().info("Cash was cleared. \n");
     }
 
     public static void tearDown() {

@@ -1,14 +1,21 @@
 package demoqa.project.api.steps;
 
 import demoqa.project.api.actions.CommonActions;
+import demoqa.project.api.actions.CreateUserActions;
 import demoqa.project.api.actions.GenerateTokenActions;
 import demoqa.project.configurations.scenario.ScenarioContext;
 import demoqa.project.enums.ErrorMessage;
 import demoqa.project.enums.ObjectKey;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.restassured.response.Response;
 import org.apache.logging.log4j.LogManager;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.apache.http.HttpStatus.SC_CREATED;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
@@ -17,6 +24,19 @@ import static org.junit.Assert.assertEquals;
 public class RegisterSteps {
     CommonActions commonActions = new CommonActions();
     Response response = ScenarioContext.getInstance().getData(ObjectKey.RESPONSE);
+
+//    @Given("User is registered and authenticated")
+//    public void registerAndAuthorizeUser(){
+//        Map<String, String> loginMap = Map.of(
+//                "userName", "test",
+//                "password", "UserUser@10"
+//        );
+//        commonSteps.prepareCredentials(loginMap);
+//        CreateUserActions.createUser(ScenarioContext.getInstance().getData(ObjectKey.USER_CREDENTIALS));
+//        validateStatusCode(201);
+//        GenerateTokenActions.generateToken(ScenarioContext.getInstance().getData(ObjectKey.USER_CREDENTIALS));
+//        getUser();
+//    }
 
     @Then("the response has status code {}")
     public void validateStatusCode(int expectedStatusCode) {

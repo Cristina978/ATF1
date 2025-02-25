@@ -10,11 +10,11 @@ import org.apache.logging.log4j.LogManager;
 import java.util.Map;
 
 public class CommonSteps {
-    CreateUserActions createUserActions = new CreateUserActions();
 
     @Given("the user provides the following credentials:")
     public void prepareCredentials(Map<String, String> userDataValue) {
         LogManager.getLogger("Starting process to register new user.");
+
         RequestUser userCreationRequest = new RequestUser(userDataValue);
         ScenarioContext.getInstance().saveData(ObjectKey.USER_CREDENTIALS, userCreationRequest);
         LogManager.getLogger().info("The Body for user creation is following: {}", userCreationRequest);
@@ -22,6 +22,6 @@ public class CommonSteps {
 
     @When("the user attempts to registers an account")
     public void registerUser() {
-        createUserActions.createUser(ScenarioContext.getInstance().getData(ObjectKey.USER_CREDENTIALS));
+        CreateUserActions.createUser(ScenarioContext.getInstance().getData(ObjectKey.USER_CREDENTIALS));
     }
 }

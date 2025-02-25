@@ -1,9 +1,13 @@
 package demoqa.project.ui.pages;
 
+import demoqa.project.ui.commonActions.BrowserAction;
+import org.apache.logging.log4j.LogManager;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+
+import java.util.Map;
+
 import static demoqa.project.configurations.driver.DriverManager.getDriver;
 
 
@@ -24,18 +28,20 @@ public class RegisterPage extends CommonPage {
 
 
     public void clickCancelRegisterButton(){
-        browserAction.clickButton(cancelRegisterButton);
+        BrowserAction.clickButton(cancelRegisterButton);
+        LogManager.getLogger().info("[{}] button is clicked.", cancelRegisterButton );
     }
 
-    public void clickNewUserButton() {
-        browserAction.clickButton(newUserButton);
+    public void clickNewUserButton(String buttonName) {
+        BrowserAction.clickButton(newUserButton);
     }
 
-    public void loginWithCredentials() {
-        browserAction.populateField(firstNameField, "test");
-        browserAction.populateField(lastNameField, "test");
-        browserAction.populateField(getUserNameField(), "user1");
-        browserAction.populateField(getPasswordField(), "UserUser@1");
+    public void loginWithCredentials(Map<String, String> credentials) {
+        LogManager.getLogger().info("Attempting to register new user with provided credentials.");
+        BrowserAction.populateField(firstNameField, credentials.get("firstname"));
+        BrowserAction.populateField(lastNameField, credentials.get("lastname"));
+        BrowserAction.populateField(getUserNameField(), credentials.get("username"));
+        BrowserAction.populateField(getPasswordField(), credentials.get("password"));
         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", cancelRegisterButton);
         clickCancelRegisterButton();
     }

@@ -12,15 +12,17 @@ import static org.apache.http.HttpStatus.SC_CREATED;
 
 public class CreateUserActions {
 
-    public void createUser(Object userData) {
+
+public static void createUser(Object userData) {
+    ScenarioContext context = ScenarioContext.getInstance();
         Response response = given()
                 .contentType("application/json")
                 .body(userData)
                 .post(PropertiesManager.getProperty("BASE_URL_API") + GET_USER.getEndPoint())
                 .thenReturn();
-        ScenarioContext.getInstance().saveData(RESPONSE, response);
+        context.saveData(RESPONSE, response);
         String userId = response.jsonPath().getString("userID");
-        ScenarioContext.getInstance().saveData(USER_ID, userId);
+        context.saveData(USER_ID, userId);
 
         if ( userId != null && response.statusCode() == SC_CREATED) {
             LogManager.getLogger().info("New user registered with ID: {}", userId);

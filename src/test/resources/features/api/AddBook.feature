@@ -2,9 +2,10 @@
 Feature: Add and remove books from user's profile via API
 
   Background:
+#    Given User is registered and authenticated
     Given the user provides the following credentials:
       | userName  | test         |
-      | password  | UserUser@2   |
+      | password  | UserUser@3   |
     When the user attempts to registers an account
     Then the response has status code 201
     And an authorization token is generated
