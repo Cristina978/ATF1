@@ -1,28 +1,37 @@
 package demoqa.project.ui.steps;
 
+
 import demoqa.project.ui.pages.AddUserPage;
-import io.cucumber.java.en.Given;
+import demoqa.project.ui.pages.CommonPage;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import static demoqa.project.ui.commonActions.BrowserAction.clickButton;
 
 
-public class AddUserSteps {
-    AddUserPage addUserPage = new AddUserPage();
+public class AddUserSteps extends AddUserPage {
+    CommonPage commonPage = new CommonPage();
 
-
-    @Given("user navigates to {string} page")
-    public void userIsOnWebTablesPage(String urlName) {
-        addUserPage.navigateToURL("WEBTABLES_URL");
-        addUserPage.validatePageURL(urlName);
+    @When("User navigates to {string} page")
+    public void redirectUserOnWebTablesPage(String urlName) {
+        commonPage.navigateToURL("WEBTABLES");
+        commonPage.validatePageURL(urlName);
+        verifyElementsOnWebTablePage();
     }
 
-    @When("user complete the form")
-    public void userCompleteTheForm() throws InterruptedException {
-        addUserPage.completeAddNewUserForm();
+    @And("User clicks on Add button")
+    public void clickAddUserButton() {
+        clickButton(getAddRecordButton());
+        verifyElementsOnRegistrationForm();
     }
 
-    @Then("new user is successful added")
-    public void newUserIsSuccessfulAdded() throws InterruptedException {
-        addUserPage.addNewUserInWebTable();
+    @And("User complete the registration form")
+    public void completeAddUserForm() {
+        completeAddNewUserForm();
+    }
+
+    @Then("New user is successful added in table")
+    public void newUserIsSuccessfulAdded() {
+        addNewUserInWebTable();
     }
 }

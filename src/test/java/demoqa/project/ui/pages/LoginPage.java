@@ -1,5 +1,6 @@
 package demoqa.project.ui.pages;
 
+import demoqa.project.configurations.driver.DriverManager;
 import demoqa.project.configurations.properties.PropertiesManager;
 import demoqa.project.enums.LoginFields;
 import demoqa.project.ui.commonActions.BrowserAction;
@@ -8,23 +9,40 @@ import org.apache.logging.log4j.LogManager;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static demoqa.project.ui.pages.CommonPage.getPasswordField;
+import static demoqa.project.ui.pages.CommonPage.getUserNameField;
 
 
-public class LoginPage extends CommonPage {
+public class LoginPage {
 
     @FindBy(id = "login")
     private WebElement loginButton;
+
+    @FindBy(id = "newUser")
+    private WebElement newUserButton;
 
     @FindBy(id= "name")
     private WebElement errorLabel;
 
     @FindBy(css = ".is-invalid")
     private List<WebElement> invalidFields;
+
+    public WebElement getLoginButton() {
+        return loginButton;
+    }
+
+    public WebElement getNewUserButton() {
+        return newUserButton;
+    }
+
+    public LoginPage(){
+        PageFactory.initElements(DriverManager.getDriver(), this);
+    }
 
     public String getErrorLabel() {
         WaitUtils.waitForElementToBeDisplayed(errorLabel, PropertiesManager.displayElementTimeout());
@@ -57,13 +75,11 @@ public class LoginPage extends CommonPage {
             Assert.assertTrue("Field is not highlighted as invalid.",
                     field.getAttribute("class").contains("is-invalid"));
             String fieldIdentifier = field.getAttribute("placeholder");
-            LogManager.getLogger().info("Field highlighted as invalid: {}", fieldIdentifier);
+            LogManager.getLogger().info("Validation failed: '{}' field is highlighted in red.", fieldIdentifier);
         }
     }
 
     public List<WebElement> getInvalidFields() {
         return invalidFields;
     }
-
-
 }

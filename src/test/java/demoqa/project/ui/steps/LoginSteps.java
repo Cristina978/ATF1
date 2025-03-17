@@ -2,7 +2,6 @@ package demoqa.project.ui.steps;
 
 import demoqa.project.ui.pages.LoginPage;
 import io.cucumber.datatable.DataTable;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.logging.log4j.LogManager;
@@ -13,11 +12,6 @@ import static org.hamcrest.Matchers.is;
 
 public class LoginSteps {
     LoginPage loginPage = new LoginPage();
-
-    @Given("User is on Login page")
-    public void userIsOnLoginPage() {
-        LogManager.getLogger().info("User is on Login page \n");
-    }
 
     @When("User logs in with the following credentials:")
     public void loginWithCredentials(DataTable dataTable) {
@@ -30,11 +24,6 @@ public class LoginSteps {
         String actualMessage = loginPage.getErrorLabel();
         assertThat("The error message is incorrect", actualMessage, is(expectedMessage));
         LogManager.getLogger().info("The error message is: {}", actualMessage);
-    }
-
-    @Then("{string} page is displayed")
-    public void isLoginPageDisplayed(String urlName) {
-        loginPage.validatePageURL(urlName);
     }
 
     @Then("Fields are highlighted in red color")

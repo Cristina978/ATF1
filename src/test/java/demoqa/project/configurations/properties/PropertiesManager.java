@@ -30,7 +30,7 @@ public class PropertiesManager {
     public static String getProperty(String propertyName) {
         String propertyValue = PROPERTIES.getProperty(propertyName);
         if (propertyValue != null) {
-            LogManager.getLogger().info("Extracting the next value from the properties : {}", propertyValue);
+            LogManager.getLogger().debug("Extracting the next value from the properties : {}", propertyValue);
             return propertyValue;
         } else {
             LogManager.getLogger().warn("{} is null or not found in the properties file", propertyName);

@@ -42,7 +42,7 @@ public class FakeDataGenerator {
     }
 
     public static Integer generateRandomSalary() {
-        return FAKER.number().numberBetween(1, 1000000000);
+        return FAKER.number().numberBetween(1, 1000);
     }
 
     public static String generateRandomDepartment() {

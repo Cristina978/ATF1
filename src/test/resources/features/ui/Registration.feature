@@ -2,7 +2,7 @@
 Feature: Registration via UI
 
   Background:
-    Given user is on Login page
+    Given User is on "Login" page
 
 
   Scenario: Check user is able to cancel registration process

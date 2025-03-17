@@ -1,14 +1,14 @@
 package demoqa.project.ui.pages;
 
+import demoqa.project.configurations.driver.DriverManager;
+import demoqa.project.enums.LoginFields;
 import demoqa.project.ui.commonActions.BrowserAction;
 import org.apache.logging.log4j.LogManager;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.Map;
-
-import static demoqa.project.configurations.driver.DriverManager.getDriver;
 
 
 public class RegisterPage extends CommonPage {
@@ -19,33 +19,22 @@ public class RegisterPage extends CommonPage {
     @FindBy(id = "lastname")
     private WebElement lastNameField ;
 
-
-    @FindBy(id = "newUser")
-    private WebElement newUserButton;
-
     @FindBy(id = "gotologin")
-    private WebElement cancelRegisterButton;
-
+    private WebElement backToLoginButton;
 
     public void clickCancelRegisterButton(){
-        BrowserAction.clickButton(cancelRegisterButton);
-        LogManager.getLogger().info("[{}] button is clicked.", cancelRegisterButton );
+        BrowserAction.clickButton(backToLoginButton);
     }
 
     public void clickNewUserButton(String buttonName) {
-        BrowserAction.clickButton(newUserButton);
+        BrowserAction.clickButton(loginPage.getNewUserButton());
     }
 
     public void loginWithCredentials(Map<String, String> credentials) {
         LogManager.getLogger().info("Attempting to register new user with provided credentials.");
-        BrowserAction.populateField(firstNameField, credentials.get("firstname"));
-        BrowserAction.populateField(lastNameField, credentials.get("lastname"));
-        BrowserAction.populateField(getUserNameField(), credentials.get("username"));
-        BrowserAction.populateField(getPasswordField(), credentials.get("password"));
-        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", cancelRegisterButton);
-        clickCancelRegisterButton();
+        BrowserAction.populateField(firstNameField, credentials.get(LoginFields.FIRSTNAME.getFieldName()));
+        BrowserAction.populateField(lastNameField, credentials.get(LoginFields.LASTNAME.getFieldName()));
+        BrowserAction.populateField(getUserNameField(), credentials.get(LoginFields.USERNAME.getFieldName()));
+        BrowserAction.populateField(getPasswordField(), credentials.get(LoginFields.PASSWORD.getFieldName()));
     }
-
-
-
 }
