@@ -2,7 +2,6 @@
 Feature: Add and remove books from user's profile via API
 
   Background:
-#    Given User is registered and authenticated
     Given the user provides the following credentials:
       | userName  | test         |
       | password  | UserUser@3   |

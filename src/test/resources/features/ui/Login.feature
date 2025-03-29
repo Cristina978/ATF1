@@ -5,7 +5,6 @@ Feature: Login
   Background:
     Given User is on "Login" page
 
-
   Scenario: Check User login with valid data
     When User logs in with the following credentials:
       | userName | test          |

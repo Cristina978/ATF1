@@ -2,6 +2,8 @@ package demoqa.project.ui.pages;
 
 import demoqa.project.configurations.driver.DriverManager;
 import demoqa.project.configurations.properties.PropertiesManager;
+import demoqa.project.utils.WaitUtils;
+import org.awaitility.core.ConditionTimeoutException;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.apache.logging.log4j.LogManager;
@@ -37,6 +39,7 @@ public class CommonPage {
 
     public void verifyAllElementsAreDisplayed() {
         LogManager.getLogger().info("Verifying that all elements on the Login page are displayed.");
+        WaitUtils.waitForElementToBeDisplayed(loginPage.getLoginButton(), PropertiesManager.displayElementTimeout());
         List<WebElement> elementsOnLoginPage = List.of(
                 userNameField,
                 passwordField,
@@ -69,9 +72,14 @@ public class CommonPage {
     }
 
     public void validatePageURL(String expectedURL) {
-        Awaitility.await()
-                .atMost(PropertiesManager.displayElementTimeout())
-                .untilAsserted(() -> assertEquals("Page URL does not match", expectedURL, getCurrentPage()));
+        try{
+            Awaitility.await()
+                    .atMost(PropertiesManager.displayElementTimeout())
+                    .untilAsserted(() -> assertEquals("Page URL does not match", expectedURL, getCurrentPage()));
+        } catch (ConditionTimeoutException ex){
+            LogManager.getLogger().info("Unable to validate page URL: condition was not fulfilled within the given time period. Exception details: {}\n", ex.getMessage());
+        throw ex;
+        }
         LogManager.getLogger().info("The following page URL: \"{}\" is displayed", getCurrentPage());
     }
 

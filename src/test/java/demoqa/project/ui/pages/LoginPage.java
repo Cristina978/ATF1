@@ -62,6 +62,7 @@ public class LoginPage {
         LogManager.getLogger().info("Attempting to log in with provided credentials.");
         BrowserAction.populateField(getUserNameField(), credentials.get(LoginFields.USERNAME.getFieldName()));
         BrowserAction.populateField(getPasswordField(), credentials.get(LoginFields.PASSWORD.getFieldName()));
+        WaitUtils.waitForElementToBeDisplayed(loginButton, PropertiesManager.displayElementTimeout());
         clickLoginButton();
     }
 

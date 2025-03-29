@@ -101,10 +101,10 @@ public class AddUserPage {
     }
 
     public void checkNewUserIsAdded() {
-        // Obține ultimul rând valid
+        // aici se obține ultimul rând valid
         WebElement lastRow = tableRows.getLast();
 
-        // Extrage datele din ultimul rând
+        // apoi se extrag datele din ultimul rând
         List<WebElement> lastRecord = lastRow.findElements(By.className("rt-td"));
 
         String rowContent = "The added record in Web Tables is: ";

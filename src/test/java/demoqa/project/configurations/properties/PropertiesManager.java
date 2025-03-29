@@ -9,6 +9,7 @@ import java.util.Properties;
 public class PropertiesManager {
 
     private static final Properties PROPERTIES = new Properties();
+
     static {
         try (InputStream input = PropertiesManager.class.getClassLoader().getResourceAsStream("properties/config.properties")) {
             if (input != null) {
@@ -16,7 +17,7 @@ public class PropertiesManager {
             } else {
                 LogManager.getLogger().error("Error: Unable to find properties file");
             }
-        } catch (IOException e) {
+        } catch (IOException | IllegalArgumentException | NullPointerException e) {
             LogManager.getLogger().error("An error occurred while loading the properties file", e);
         }
     }
@@ -42,7 +43,7 @@ public class PropertiesManager {
         try {
             return Duration.ofSeconds(Integer.parseInt(propertyValue));
         } catch (NumberFormatException | NullPointerException e) {
-            LogManager.getLogger().warn("Invalid or missing displayedElementTimeout value in properties. Using default value - 5 seconds.");
+            LogManager.getLogger().warn("Invalid or missing displayedElementTimeout value in properties. Condition: Expected a valid integer but got an unparsable string. Using default value - 5 seconds.");
             return Duration.ofSeconds(5);
         }
     }

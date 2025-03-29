@@ -7,7 +7,6 @@ import org.apache.logging.log4j.LogManager;
 
 
 public class CommonSteps extends CommonPage {
-//    CommonPage commonPage = new CommonPage();
 
     @Given("User is on {string} page")
     public void userIsOnLoginPage(String urlName) {

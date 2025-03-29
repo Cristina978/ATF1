@@ -14,8 +14,8 @@
             <SizeBasedTriggeringPolicy size="1 MB"/>
         </RollingFile>
         <RollingFile name="FileAppender"
-                     fileName="reports/evidence/${date:yyyy-MM-dd_HH-mm}/${ctx:scenarioName}/${ctx:scenarioName}.log"
-                     filePattern="reports/evidence/${date:yyyy-MM-dd_HH-mm}/${ctx:scenarioName}/${ctx:scenarioName}-%d{yyyy-MM-dd}.log">
+                     fileName="reports/evidence/${date:yyyy-MM-dd_HH-mm}/${ctx:scenarioName:-default}/${ctx:scenarioName:-default}.log"
+                     filePattern="reports/evidence/${date:yyyy-MM-dd_HH-mm}/${ctx:scenarioName:-default}/${ctx:scenarioName:-default}-%d{yyyy-MM-dd}.log">
             <PatternLayout pattern="${LOG_PATTERN}"/>
             <SizeBasedTriggeringPolicy size="1 MB"/>
         </RollingFile>
