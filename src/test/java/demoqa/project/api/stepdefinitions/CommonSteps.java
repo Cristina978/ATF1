@@ -1,4 +1,4 @@
-package demoqa.project.api.steps;
+package demoqa.project.api.stepdefinitions;
 
 import demoqa.project.api.actions.CreateUserActions;
 import demoqa.project.api.dtos.requests.RequestUser;

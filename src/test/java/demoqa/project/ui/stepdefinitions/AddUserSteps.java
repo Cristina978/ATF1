@@ -1,8 +1,8 @@
-package demoqa.project.ui.steps;
+package demoqa.project.ui.stepdefinitions;
 
 
-import demoqa.project.ui.pages.AddUserPage;
-import demoqa.project.ui.pages.CommonPage;
+import demoqa.project.ui.pageobjects.AddUserPage;
+import demoqa.project.ui.pageobjects.CommonPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

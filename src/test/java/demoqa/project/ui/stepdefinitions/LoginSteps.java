@@ -1,6 +1,6 @@
-package demoqa.project.ui.steps;
+package demoqa.project.ui.stepdefinitions;
 
-import demoqa.project.ui.pages.LoginPage;
+import demoqa.project.ui.pageobjects.LoginPage;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

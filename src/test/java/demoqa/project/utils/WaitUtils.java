@@ -20,11 +20,9 @@ public class WaitUtils {
         LogManager.getLogger().info("{} field is displayed.", element.getAccessibleName());
     }
 
-
     public static void waitForElementToBeClickable(WebElement element, Duration timeoutInSeconds){
         WebDriverWait wait = defineWebDriverWait(timeoutInSeconds);
         wait.until(ExpectedConditions.elementToBeClickable(element));
         LogManager.getLogger().info("Button [{}] is clickable.", element.getText());
     }
-
 }

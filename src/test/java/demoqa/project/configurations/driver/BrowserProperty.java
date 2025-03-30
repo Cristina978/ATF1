@@ -21,19 +21,18 @@ public class BrowserProperty {
     public static WebDriver getBrowserProperty() {
         switch (BROWSER) {
             case "chrome" :
-                WebDriverManager.chromedriver().setup();
+                WebDriverManager.chromedriver().setup();      //se porneste browserul dorit
                 driver = new ChromeDriver();
                 break;
             case "firefox" :
-                WebDriverManager.chromedriver().setup();
+                WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver();
                 break;
             case "safari" :
-                WebDriverManager.chromedriver().setup();
                 driver = new SafariDriver();
                 break;
             default :
-                WebDriverManager.chromedriver().setup();
+                WebDriverManager.edgedriver().setup();
                 driver = new EdgeDriver();
         }
         LogManager.getLogger().info("Current browser is: {}", BROWSER);

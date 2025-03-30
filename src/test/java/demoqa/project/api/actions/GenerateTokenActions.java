@@ -4,11 +4,11 @@ import demoqa.project.configurations.properties.PropertiesManager;
 import demoqa.project.configurations.scenario.ScenarioContext;
 import io.restassured.response.Response;
 import org.apache.logging.log4j.LogManager;
-
 import static demoqa.project.enums.Endpoints.GENERATE_TOKEN;
 import static demoqa.project.enums.ObjectKey.RESPONSE;
 import static demoqa.project.enums.ObjectKey.TOKEN;
 import static io.restassured.RestAssured.given;
+
 
 public class GenerateTokenActions {
     public static void generateToken(Object userData) {

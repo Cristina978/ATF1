@@ -1,4 +1,4 @@
-package demoqa.project.api.steps;
+package demoqa.project.api.stepdefinitions;
 
 import demoqa.project.api.actions.BooksActions;
 import demoqa.project.api.actions.CommonActions;
@@ -38,10 +38,10 @@ public class AddBookSteps {
         commonActions.getUser();
     }
 
-    @Given("the user adds {int} books to their profile")
-    public void addMultipleBooksToProfile(int numberOfBooks) {
+    @Given("the user adds some books to their profile")
+    public void addMultipleBooksToProfile() {
         booksActions.getAllBooks();
-        booksActions.addMultipleBooks(numberOfBooks);
+        booksActions.addBook(3);
     }
 
     @Then("all books are removed from the user's profile")

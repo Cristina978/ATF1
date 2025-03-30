@@ -1,9 +1,9 @@
 package demoqa.project.configurations.scenario;
 
 import demoqa.project.enums.ObjectKey;
-
 import java.util.HashMap;
 import java.util.Map;
+
 
 public class ScenarioContext {
 
@@ -14,14 +14,12 @@ public class ScenarioContext {
         data = new HashMap<>();
     }
 
-
     public static ScenarioContext getInstance() {
         if (instance == null) {
             instance = new ScenarioContext();
         }
         return instance;
     }
-
 
     public void saveData(ObjectKey key, Object value) {
         data.put(key, value);
@@ -31,7 +29,7 @@ public class ScenarioContext {
         data.clear();
     }
 
-    public <T> T getData(ObjectKey key) { return (T) data.get(key);
+    public <T> T getData(ObjectKey key) {
+        return (T) data.get(key);
     }
-
 }

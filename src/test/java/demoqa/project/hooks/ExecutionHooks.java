@@ -9,10 +9,6 @@ import demoqa.project.configurations.screenshots.ScreenshotConfiguration;
 import demoqa.project.ui.commonActions.BrowserAction;
 import io.cucumber.java.*;
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.ThreadContext;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import static demoqa.project.configurations.driver.DriverManager.getDriver;
 
 
 public class ExecutionHooks {
@@ -61,7 +57,7 @@ public class ExecutionHooks {
     }
 
     @AfterStep("@UI")
-    public void attachScreenshot(Scenario scenario) {
-            ScreenshotConfiguration.captureScreenshot(scenario);
+    public void takeScreenshot(Scenario scenario) {
+        ScreenshotConfiguration.captureScreenshot(scenario);
     }
 }

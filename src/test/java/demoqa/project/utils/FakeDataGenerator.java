@@ -48,5 +48,4 @@ public class FakeDataGenerator {
     public static String generateRandomDepartment() {
         return FAKER.company().industry();
     }
-
 }

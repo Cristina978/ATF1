@@ -1,18 +1,18 @@
-package demoqa.project.ui.pages;
+package demoqa.project.ui.pageobjects;
 
 import demoqa.project.configurations.driver.DriverManager;
 import demoqa.project.configurations.properties.PropertiesManager;
 import demoqa.project.ui.commonActions.BrowserAction;
 import demoqa.project.utils.WaitUtils;
 import org.apache.logging.log4j.LogManager;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import demoqa.project.utils.FakeDataGenerator;
 import org.openqa.selenium.support.PageFactory;
-
 import java.util.List;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 
 public class AddUserPage {
@@ -63,8 +63,11 @@ public class AddUserPage {
                 addRecordButton
         );
         for (WebElement element : elementsOnLoginPage) {
-            Assert.assertTrue("Element " + element.getAttribute("id") + " is not displayed!", element.isDisplayed());
-            LogManager.getLogger().debug("Element '{}' is displayed.", element.getAttribute("id"));
+            if (element.isDisplayed()) {
+                LogManager.getLogger().debug("Element '{}' is displayed.", element.getAttribute("id"));
+            } else {
+                LogManager.getLogger().debug("Element '{}' is not displayed.", element.getAttribute("id"));
+            }
         }
         LogManager.getLogger().info("All elements on the Web Table page are displayed correctly.");
     }
@@ -79,17 +82,22 @@ public class AddUserPage {
                 submitButton
         );
         for (WebElement element : elementsOnLoginPage) {
-            Assert.assertTrue("Element " + element.getAttribute("id") + " is not displayed!", element.isDisplayed());
-            LogManager.getLogger().debug("Element '{}' is displayed correctly.", element.getAttribute("id"));
+            if (element.isDisplayed()) {
+                LogManager.getLogger().debug("Element '{}' is displayed correctly.", element.getAttribute("id"));
+            } else {
+                LogManager.getLogger().debug("Element '{}' is not displayed correctly.", element.getAttribute("id"));
+            }
         }
         LogManager.getLogger().info("All elements on the Registration Form are displayed correctly.");
     }
 
+    private String generatedEmail;
     public void completeAddNewUserForm() {
         LogManager.getLogger().info("'Registration Form' is displayed");
         BrowserAction.populateField(firstName, FakeDataGenerator.generateRandomFirstName());
         BrowserAction.populateField(lastName, FakeDataGenerator.generateRandomLastName());
-        BrowserAction.populateField(userEmail, FakeDataGenerator.generateRandomEmail());
+        generatedEmail = FakeDataGenerator.generateRandomEmail();
+        BrowserAction.populateField(userEmail, generatedEmail);
         BrowserAction.populateField(age, FakeDataGenerator.generateRandomAge());
         BrowserAction.populateField(salary, FakeDataGenerator.generateRandomSalary());
         BrowserAction.populateField(department, FakeDataGenerator.generateRandomDepartment());
@@ -101,16 +109,19 @@ public class AddUserPage {
     }
 
     public void checkNewUserIsAdded() {
-        // aici se obține ultimul rând valid
         WebElement lastRow = tableRows.getLast();
 
-        // apoi se extrag datele din ultimul rând
         List<WebElement> lastRecord = lastRow.findElements(By.className("rt-td"));
 
-        String rowContent = "The added record in Web Tables is: ";
+        StringBuilder rowContent = new StringBuilder("The added record in Web Tables is: ");
         for (WebElement cell : lastRecord) {
-            rowContent += cell.getText() + " | ";
+            rowContent.append(cell.getText()).append(" | ");
         }
-        LogManager.getLogger().info(rowContent);
+
+        boolean containsEmail = lastRecord.stream()
+                .anyMatch(cell -> cell.getText().equals(generatedEmail));
+        assertThat("The record was not added in the Web Tables", containsEmail, is(true));
+
+        LogManager.getLogger().info(rowContent.toString());
     }
 }

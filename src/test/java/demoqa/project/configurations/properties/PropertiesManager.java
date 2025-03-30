@@ -9,9 +9,10 @@ import java.util.Properties;
 public class PropertiesManager {
 
     private static final Properties PROPERTIES = new Properties();
-
     static {
-        try (InputStream input = PropertiesManager.class.getClassLoader().getResourceAsStream("properties/config.properties")) {
+        try (InputStream input = PropertiesManager.class
+                .getClassLoader()
+                .getResourceAsStream("properties/config.properties")) {
             if (input != null) {
                 PROPERTIES.load(input);
             } else {
@@ -22,11 +23,9 @@ public class PropertiesManager {
         }
     }
 
-
     public static String getBrowser() {
         return PROPERTIES.getProperty("BROWSER");
     }
-
 
     public static String getProperty(String propertyName) {
         String propertyValue = PROPERTIES.getProperty(propertyName);
@@ -47,5 +46,4 @@ public class PropertiesManager {
             return Duration.ofSeconds(5);
         }
     }
-
 }

@@ -1,13 +1,10 @@
-package demoqa.project.ui.pages;
+package demoqa.project.ui.pageobjects;
 
-import demoqa.project.configurations.driver.DriverManager;
 import demoqa.project.enums.LoginFields;
 import demoqa.project.ui.commonActions.BrowserAction;
 import org.apache.logging.log4j.LogManager;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-
 import java.util.Map;
 
 

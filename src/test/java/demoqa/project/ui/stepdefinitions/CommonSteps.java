@@ -1,6 +1,6 @@
-package demoqa.project.ui.steps;
+package demoqa.project.ui.stepdefinitions;
 
-import demoqa.project.ui.pages.CommonPage;
+import demoqa.project.ui.pageobjects.CommonPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.apache.logging.log4j.LogManager;

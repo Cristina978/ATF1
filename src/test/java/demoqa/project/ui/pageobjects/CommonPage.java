@@ -1,4 +1,4 @@
-package demoqa.project.ui.pages;
+package demoqa.project.ui.pageobjects;
 
 import demoqa.project.configurations.driver.DriverManager;
 import demoqa.project.configurations.properties.PropertiesManager;

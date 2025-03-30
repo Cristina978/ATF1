@@ -1,4 +1,4 @@
-package demoqa.project.ui.pages;
+package demoqa.project.ui.pageobjects;
 
 import demoqa.project.configurations.driver.DriverManager;
 import demoqa.project.configurations.properties.PropertiesManager;
@@ -10,12 +10,10 @@ import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 import java.util.List;
 import java.util.Map;
-
-import static demoqa.project.ui.pages.CommonPage.getPasswordField;
-import static demoqa.project.ui.pages.CommonPage.getUserNameField;
+import static demoqa.project.ui.pageobjects.CommonPage.getPasswordField;
+import static demoqa.project.ui.pageobjects.CommonPage.getUserNameField;
 
 
 public class LoginPage {

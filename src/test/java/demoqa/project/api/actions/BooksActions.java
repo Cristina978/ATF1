@@ -37,7 +37,7 @@ public class BooksActions extends CommonActions {
         LogManager.getLogger().info("Starting process to add {} random book to the user's collection.", randomIsbnCount);
         ScenarioContext.getInstance().saveData(ObjectKey.BOOKS_ISBN, bookIsbn);
 
-        List<Map<String, String>> isbnList = bookIsbn.stream()
+        List<Map<String, String>> isbnMap = bookIsbn.stream()
                 .map(isbn -> Map.of("isbn", isbn))
                 .toList();
 
@@ -46,49 +46,17 @@ public class BooksActions extends CommonActions {
                 .contentType("application/json")
                 .body(Map.of(
                         "userId", userId,
-                        "collectionOfIsbns", isbnList
+                        "collectionOfIsbns", isbnMap
                 ))
                 .post(PropertiesManager.getProperty("BASE_URL_API") + GET_BOOKS.getEndPoint())
                 .thenReturn();
         ScenarioContext.getInstance().saveData(RESPONSE, response);
         if ( response.statusCode() == SC_CREATED) {
             LogManager.getLogger().info("Successfully added book to user with ID: {}", userId);
-            LogManager.getLogger().info("Added book ISBN: {} \n", isbnList.stream().map(m -> m.get("isbn")).toList());
+            LogManager.getLogger().info("Added book ISBN: {} \n", isbnMap.stream().map(m -> m.get("isbn")).toList());
         } else {
             String errorMessage = response.jsonPath().getString("message");
             LogManager.getLogger().info("Failed to add the book to user ID: {}. Status Code: {}, Error: {} \n", userId, response.statusCode(), errorMessage);
-        }
-    }
-
-    public void addMultipleBooks (int randomIsbnCount) {
-        LogManager.getLogger().info("Starting process to get {} random books to the user's collection.", randomIsbnCount);
-        String token = ScenarioContext.getInstance().getData(ObjectKey.TOKEN);
-        String userId = ScenarioContext.getInstance().getData(ObjectKey.USER_ID);
-        //generate the list of ISBNs
-        bookIsbn = getRandomBook(randomIsbnCount);
-        LogManager.getLogger().info("Starting process to add {} random books to the user's collection.", randomIsbnCount);
-        ScenarioContext.getInstance().saveData(ObjectKey.BOOKS_ISBN, bookIsbn);
-
-        List<Map<String, String>> isbnList = bookIsbn.stream()
-                .map(isbn -> Map.of("isbn", isbn))
-                .toList();
-
-        Response response = given()
-                .header("Authorization", "Bearer " + token)
-                .contentType("application/json")
-                .body(Map.of(
-                        "userId", userId,
-                        "collectionOfIsbns", isbnList
-                ))
-                .post(PropertiesManager.getProperty("BASE_URL_API") + GET_BOOKS.getEndPoint())
-                .thenReturn();
-        ScenarioContext.getInstance().saveData(RESPONSE, response);
-        if ( response.statusCode() == SC_CREATED) {
-            LogManager.getLogger().info("Successfully added books to user with ID: {}", userId);
-            LogManager.getLogger().info("Added ISBN books: {} \n", isbnList.stream().map(m -> m.get("isbn")).toList());
-        } else {
-            String errorMessage = response.jsonPath().getString("message");
-            LogManager.getLogger().info("Failed to add books to user ID: {}. Status Code: {}, Error: {} \n", userId, response.statusCode(), errorMessage);
         }
     }
 }

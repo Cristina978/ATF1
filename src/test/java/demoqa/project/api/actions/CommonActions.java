@@ -1,5 +1,6 @@
 package demoqa.project.api.actions;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import demoqa.project.configurations.properties.PropertiesManager;
@@ -24,7 +25,7 @@ public class CommonActions {
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(json);
             return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonNode);
-        } catch (Exception e) {
+        } catch (JsonProcessingException e) {
             return "Invalid JSON: " + json;
         }
     }

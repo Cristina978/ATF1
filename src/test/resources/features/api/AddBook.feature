@@ -20,7 +20,7 @@ Feature: Add and remove books from user's profile via API
 
   @DeleteUser
   Scenario: Validate that user can add and remove multiple books
-    Given the user adds 3 books to their profile
+    Given the user adds some books to their profile
     When the added book is verified in the user profile
     Then all books are removed from the user's profile
     And the user verifies that no books remain in their profile

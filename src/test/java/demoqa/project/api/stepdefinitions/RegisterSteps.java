@@ -1,4 +1,4 @@
-package demoqa.project.api.steps;
+package demoqa.project.api.stepdefinitions;
 
 import demoqa.project.api.actions.CommonActions;
 import demoqa.project.api.actions.GenerateTokenActions;

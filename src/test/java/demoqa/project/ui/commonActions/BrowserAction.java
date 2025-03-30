@@ -42,6 +42,7 @@ public class BrowserAction {
             LogManager.getLogger().warn("Failed to remove ads: {}", e.getMessage());
         }
     }
+
     public static void scrollToElement(WebElement element) {
         try {
             JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
@@ -52,5 +53,4 @@ public class BrowserAction {
             throw e;
         }
     }
-
 }

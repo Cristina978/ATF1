@@ -8,11 +8,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.ThreadContext;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
 
 public class ScreenshotConfiguration {
 
