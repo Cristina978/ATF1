@@ -28,7 +28,7 @@ public class ExecutionHooks {
     public void setUpUI(Scenario scenario) {
         LoggerHelper.setLogFileName(scenario);
         LogManager.getLogger().info("Starting UI test: {}", scenario.getName());
-        DriverManager.MaximizeBrowser();
+        DriverManager.maximizeBrowser();
         DriverManager.openBasePage();
         BrowserAction.removeAds();
     }

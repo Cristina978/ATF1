@@ -17,7 +17,7 @@ public class DriverManager {
         return driver;
     }
 
-    public static void MaximizeBrowser() {
+    public static void maximizeBrowser() {
         getDriver().manage().window().maximize();
         LogManager.getLogger().info("Browser is launched and maximized");
     }

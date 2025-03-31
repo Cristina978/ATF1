@@ -15,15 +15,16 @@ import static io.restassured.RestAssured.given;
 public class UserActions extends CommonActions {
 
     public void verifyUserHasNoBooks() {
+        ScenarioContext context = ScenarioContext.getInstance();
         LogManager.getLogger().info("Starting verification to check that user has no books.");
-        String user_id = ScenarioContext.getInstance().getData(ObjectKey.USER_ID);
-        String token = ScenarioContext.getInstance().getData(ObjectKey.TOKEN);
+        String user_id = context.getData(ObjectKey.USER_ID);
+        String token = context.getData(ObjectKey.TOKEN);
         Response response = given()
                 .header("Authorization", "Bearer " + token)
                 .contentType("application/json")
                 .get(PropertiesManager.getProperty("BASE_URL_API") + GET_USER.getEndPoint() + "/" + user_id )
                 .thenReturn();
-        ScenarioContext.getInstance().saveData(RESPONSE, response);
+        context.saveData(RESPONSE, response);
 
         String responseBody = response.getBody().asString();
         JsonPath jsonPath = new JsonPath(responseBody);

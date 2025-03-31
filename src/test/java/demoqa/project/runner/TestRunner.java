@@ -12,9 +12,9 @@ import org.junit.runner.RunWith;
                 "html:target/cucumber-report/cucumber-report.html",
                 "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
         },
-        tags = "@UI or @API",
+        tags = "@UI or @API or @Negative",
         features = {"src/test/resources/features"},
-        glue = {"demoqa.project.ui.steps", "demoqa.project.hooks", "demoqa.project.api.steps"}
+        glue = {"demoqa.project.ui.stepdefinitions", "demoqa.project.hooks", "demoqa.project.api.stepdefinitions"}
 )
 public class TestRunner {
 }

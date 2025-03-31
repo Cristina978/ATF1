@@ -11,8 +11,9 @@ import static org.apache.http.HttpStatus.SC_NO_CONTENT;
 
 public class DeleteUserActions {
     public void deleteAccount() {
-        String token = ScenarioContext.getInstance().getData(ObjectKey.TOKEN);
-        String user_id = ScenarioContext.getInstance().getData(ObjectKey.USER_ID);
+        ScenarioContext context = ScenarioContext.getInstance();
+        String token = context.getData(ObjectKey.TOKEN);
+        String user_id = context.getData(ObjectKey.USER_ID);
         given()
                 .header("Authorization", "Bearer " + token)
                 .contentType("application/json")

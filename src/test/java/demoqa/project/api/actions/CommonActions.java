@@ -19,7 +19,7 @@ import static io.restassured.RestAssured.given;
 import static org.apache.http.HttpStatus.SC_OK;
 
 public class CommonActions {
-
+    ScenarioContext context = ScenarioContext.getInstance();
     public String formatJson(String json) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
@@ -32,15 +32,15 @@ public class CommonActions {
 
     public void getUser() {
         LogManager.getLogger().info("Starting process to get user details.");
-        String user_id = ScenarioContext.getInstance().getData(ObjectKey.USER_ID);
-        String token = ScenarioContext.getInstance().getData(ObjectKey.TOKEN);
+        String user_id = context.getData(ObjectKey.USER_ID);
+        String token = context.getData(ObjectKey.TOKEN);
 
         Response response = given()
                 .header("Authorization", "Bearer " + token)
                 .contentType("application/json")
                 .get(PropertiesManager.getProperty("BASE_URL_API") + GET_USER.getEndPoint() + "/" + user_id )
                 .thenReturn();
-        ScenarioContext.getInstance().saveData(RESPONSE, response);
+        context.saveData(RESPONSE, response);
         LogManager.getLogger().info("Response Body: \n {}", formatJson(response.getBody().asString()));
         int statusCode = response.getStatusCode();
         if (statusCode != SC_OK) {
@@ -51,7 +51,7 @@ public class CommonActions {
 
     public List<String> getRandomBook(int count) {
         LogManager.getLogger().info("User gets {} random books from the response data.", count);
-        Response response = ScenarioContext.getInstance().getData(ObjectKey.RESPONSE);
+        Response response = context.getData(ObjectKey.RESPONSE);
         JsonPath jsonPath = response.jsonPath();
 
         List<String> isbnList = jsonPath.getList("books.isbn");

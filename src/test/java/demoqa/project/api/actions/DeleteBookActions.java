@@ -13,11 +13,12 @@ import static io.restassured.RestAssured.given;
 import static org.apache.http.HttpStatus.SC_NO_CONTENT;
 
 public class DeleteBookActions extends CommonActions {
+    ScenarioContext context = ScenarioContext.getInstance();
 
     public void deleteBook() {
-        String token = ScenarioContext.getInstance().getData(ObjectKey.TOKEN);
-        String userId = ScenarioContext.getInstance().getData(ObjectKey.USER_ID);
-        List<String> booksIsbn = ScenarioContext.getInstance().getData(ObjectKey.BOOKS_ISBN);
+        String token = context.getData(ObjectKey.TOKEN);
+        String userId = context.getData(ObjectKey.USER_ID);
+        List<String> booksIsbn = context.getData(ObjectKey.BOOKS_ISBN);
         LogManager.getLogger().info("Sending API request to delete book.");
         given()
                 .header("Authorization", "Bearer " + token)
@@ -32,8 +33,8 @@ public class DeleteBookActions extends CommonActions {
     }
 
     public void deleteAllBooks() {
-        String token = ScenarioContext.getInstance().getData(ObjectKey.TOKEN);
-        String userId = ScenarioContext.getInstance().getData(ObjectKey.USER_ID);
+        String token = context.getData(ObjectKey.TOKEN);
+        String userId = context.getData(ObjectKey.USER_ID);
         LogManager.getLogger().info("Sending API request to delete all books.");
         given()
                 .header("Authorization", "Bearer " + token)
